@@ -21,8 +21,13 @@
     -->
     <title>React App</title>
   </head>
-  <body>
+  <body class="preload">
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      setTimeout(function(){
+          document.body.className="";
+      },1500);
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.

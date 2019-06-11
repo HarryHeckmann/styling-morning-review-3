@@ -1,33 +1,212 @@
+@font-face {
+  font-family: 'NationalPark-Heavy';
+  src: url('./NationalPark/NationalPark-Heavy.otf') format('truetype'); 
+}
+@font-face {
+  font-family: 'NationalPark-Outline';
+  src: url('./NationalPark/NationalPark-Outline.otf') format('truetype'); 
+}
+@font-face {
+  font-family: 'NationalPark-Regular';
+  src: url('./NationalPark/NationalPark-Regular.otf') format('truetype'); 
+}
+@font-face {
+  font-family: 'NationalPark-Thin';
+  src: url('./NationalPark/NationalPark-Thin.otf') format('truetype'); 
+}
+
+
+body.preload *{
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+  transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-image: url('./stairs.jpg');
+  background-size: cover;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* Regular Nav */
+
+#full_nav{
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   color: white;
+  font-family: 'NationalPark-Regular'
+}
+#full_nav > h2{
+  border: none;
+  border-bottom: 1px dashed white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Mobile nav */
+
+#mobile_nav{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  animation: mobileNav 1s ease-in forwards
+}
+#mobile_nav > div {
+  height: 50vh;
+  margin-top: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-family: 'NationalPark-Heavy';
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Show Mobile nav */
+
+#mobile_nav > div > h2:nth-child(1){
+  animation: mobileNavItems .25s linear forwards
+}
+#mobile_nav > div > h2:nth-child(2){
+  animation: mobileNavItems .5s linear forwards
+}
+#mobile_nav > div > h2:nth-child(3){
+  animation: mobileNavItems .75s linear forwards
+}
+#mobile_nav > div > h2:nth-child(4){
+  animation: mobileNavItems 1s linear forwards
+}
+
+/* Hide mobile Nav */
+#mobile_nav_hidden > div > h2:nth-child(1){
+  animation: hideMobileNavItems 1s linear forwards
+}
+#mobile_nav_hidden > div > h2:nth-child(2){
+  animation: hideMobileNavItems .75s linear forwards
+}
+#mobile_nav_hidden > div > h2:nth-child(3){
+  animation: hideMobileNavItems .5s linear forwards
+}
+#mobile_nav_hidden > div > h2:nth-child(4){
+  animation: hideMobileNavItems .25s linear forwards
+}
+
+/* "hidden" mobile nav */
+
+#mobile_nav_hidden{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  animation: hideMobileNav 1s ease-in forwards;
+}
+#mobile_nav_hidden > div{
+  height: 50vh;
+  margin-top: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-family: 'NationalPark-Heavy';
+}
+
+#nav_button{
+  display: none;
+}
+
+
+/* quote text */
+
+.middle{
+  width: 60vw;
+  color: white;
+  font-family: 'NationalPark-Thin';
+  margin-bottom: 35vh;
+  text-align: center
+}
+
+.middle > h1{
+  font-family: 'NationalPark-Outline';
+  font-size: 300%
+}
+
+.middle > h3 {
+  text-align: right;
+}
+
+@keyframes mobileNav{
+  0%{
+    background-color: rgba(21, 42, 18, 0)
   }
-  to {
-    transform: rotate(360deg);
+  50%{
+    background-color: rgba(21, 42, 18, 0.5)
+  }
+  100%{
+    background-color: rgba(21, 42, 18, .95);
+  }
+}
+@keyframes hideMobileNav{
+  0%{
+    background-color: rgba(21, 42, 18, .95)
+  }
+  50%{
+    background-color: rgba(21, 42, 18, 0.5)
+  }
+  100%{
+    background-color: rgba(21, 42, 18, 0);
+    display: none
+  }
+}
+
+@keyframes mobileNavItems {
+  0%{
+    margin-right: 150vw
+  }
+  50%{
+    margin-right: 75vw
+  }
+  100%{
+    margin-right: 0vw
+  }
+}
+@keyframes hideMobileNavItems {
+  0%{
+    margin-right: 0vw
+  }
+  50%{
+    /* margin-right: 75vw */
+  }
+  100%{
+    margin-right: 150vw
+  }
+}
+
+@media(max-width: 700px){
+  #full_nav{
+    display: none;
+  }
+  .App{
+    justify-content: space-around;
+  }
+  .middle{
+    margin-bottom: 0;
+  }
+  .middle > h3 {
+    text-align: center;
+  }
+  #nav_button{
+    display: inherit;
+    position: absolute;
+    z-index: 3;
+    top: 3vh;
+    background-color: rgba(0,0,0,0);
+    font-size: 1em;
+    color: white;
+    font-family: 'NationalPark-Heavy';
+    border: none;
+    border-bottom: 1px dashed white;
   }
 }
